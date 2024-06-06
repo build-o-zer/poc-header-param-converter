@@ -33,7 +33,12 @@ public class DurationConverterProvider implements ParamConverterProvider {
 
         @Override
         public Duration fromString(String durationExpression) {
-            return Duration.parse(durationExpression);
+            try {
+                return Duration.parse(durationExpression);
+            } catch (Exception e) {
+                log.error("Error parsing duration expression: {}", durationExpression);
+                return null;
+            }
         }
     
         @Override
