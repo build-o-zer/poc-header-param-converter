@@ -2,8 +2,11 @@ package org.juandfx.header_param_poc;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.text.ParseException;
 import java.time.Duration;
+import java.time.format.DateTimeParseException;
 
+import org.glassfish.jersey.server.ParamException;
 import org.springframework.stereotype.Component;
 
 import jakarta.ws.rs.ext.ParamConverter;
@@ -35,7 +38,7 @@ public class DurationConverterProvider implements ParamConverterProvider {
         public Duration fromString(String durationExpression) {
             try {
                 return Duration.parse(durationExpression);
-            } catch (Exception e) {
+            } catch (DateTimeParseException e) {
                 log.error("Error parsing duration expression: {}", durationExpression);
                 return null;
             }
