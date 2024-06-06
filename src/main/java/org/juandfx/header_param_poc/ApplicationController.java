@@ -36,7 +36,7 @@ public class ApplicationController {
 
     @GET
     @Produces("text/plain")
-    public Response getHelloWord(@HeaderParam("IDFM-IVTR-HET-Max-Age") @DefaultValue(DEFAULT_MAX_DURATION) Duration duration) 
+    public Response endpoint(@HeaderParam("IDFM-IVTR-HET-Max-Age") @DefaultValue(DEFAULT_MAX_DURATION) Duration duration) 
     {
         Duration boundedDuration = getBoundedDuration(duration);
         long timeStam = getTimeMillisFromNow(boundedDuration);
